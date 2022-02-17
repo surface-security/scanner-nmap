@@ -9,15 +9,15 @@ RUN apk add --update \
             ca-certificates \
             libpcap \
             libgcc libstdc++ \
-            libressl2.6-libcrypto libressl2.6-libssl \
-    && update-ca-certificates
+            libressl2.6-libcrypto libressl2.6-libssl
 
 # Compile and install Nmap from sources
+# FIXME: upgrade to latest alpine and remove `-k` from cURL
 RUN apk add \
         libpcap-dev libressl-dev lua-dev linux-headers \
         autoconf g++ libtool make \
         curl \
- && curl -fL -o /tmp/nmap.tar.bz2 \
+ && curl -kfL -o /tmp/nmap.tar.bz2 \
          https://nmap.org/dist/nmap-${NMAP_VERSION}.tar.bz2 \
  && tar -xjf /tmp/nmap.tar.bz2 -C /tmp \
  && cd /tmp/nmap-${NMAP_VERSION} \
