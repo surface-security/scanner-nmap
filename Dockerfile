@@ -34,7 +34,7 @@ RUN apk add \
  && make install
 
 
-FROM python:3.17-alpine3.17
+FROM python:3.7-alpine3.17
 
 RUN apk add --no-cache \
             ca-certificates \
