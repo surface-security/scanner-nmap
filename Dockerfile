@@ -2,7 +2,7 @@
 
 FROM alpine:3.7 as builder
 
-ARG NMAP_VERSION=7.70
+ARG NMAP_VERSION=7.93
 
 # Install dependencies
 RUN apk add --update \
