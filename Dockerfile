@@ -1,6 +1,6 @@
 # build based on https://hub.docker.com/r/instrumentisto/nmap/
 
-FROM alpine:3.7 as builder
+FROM alpine:3.17 as builder
 
 ARG NMAP_VERSION=7.93
 
