@@ -13,15 +13,15 @@ RUN apk add --update \
 
 # Compile and install Nmap from sources
 # FIXME: upgrade to latest alpine and remove `-k` from cURL
-RUN apk add \
-        libpcap-dev libressl-dev lua-dev linux-headers \
+RUN apk add --update --no-cache --virtual .build-deps \
+        libpcap-dev openssl-dev lua-dev linux-headers \
         autoconf g++ libtool make \
          curl \
     \
  && curl -fL -o /tmp/nmap.tar.bz2 \
         https://nmap.org/dist/nmap-${NMAP_VERSION}.tar.bz2 \
  && tar -xjf /tmp/nmap.tar.bz2 -C /tmp \
- && cd /tmp/nmap-${NMAP_VERSION} \
+ && cd /tmp/nmap-${NMAP_VERSION}\
  && ./configure \
         --with-openssl=/usr/lib \
         --prefix=/usr-nmap \
@@ -45,7 +45,7 @@ RUN apk add --no-cache \
 RUN update-ca-certificates
 
 RUN pip install python-libnmap \
-        && rm -rf /root/.cache
+        && rm -rf /root/.cache 
        
 
 COPY --from=builder /usr-nmap /usr
